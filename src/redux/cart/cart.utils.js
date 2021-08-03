@@ -10,6 +10,7 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
         : cartItem
     );
   }
+
   return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
 };
 
@@ -19,7 +20,7 @@ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
   );
 
   if (existingCartItem.quantity === 1) {
-    return cartItems.filter((cartItem) => cartItem.id != cartItemToRemove.id);
+    return cartItems.filter((cartItem) => cartItem.id !== cartItemToRemove.id);
   }
 
   return cartItems.map((cartItem) =>
@@ -27,18 +28,4 @@ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
       ? { ...cartItem, quantity: cartItem.quantity - 1 }
       : cartItem
   );
-};
-
-export const addToItemFromCart = (cartItems, cartItemToEdit) => {
-  const existingCartItem = cartItems.find(
-    (cartItem) => cartItem.id === cartItemToEdit.id
-  );
-
-  if (existingCartItem.quantity > 1) {
-    return cartItems.map((cartItem) =>
-      cartItem.id === cartItemToEdit.id
-        ? { ...cartItem, quantity: cartItem.quantity + 1 }
-        : cartItem
-    );
-  }
 };
